@@ -3,6 +3,21 @@ Die a;
 int total = 0;
 int average = 0;
 
+int numEven = 0;
+int numOdd = 0;
+
+boolean even;
+
+boolean randomColor = false;
+
+int color1 = 0;
+int color2 = 255;
+int color3 = 0;
+
+int colorDie1 = 255;
+int colorDie2 = 255;
+int colorDie3 = 255;
+
 void setup() {
 	noLoop();
 	size(400, 500);
@@ -10,6 +25,12 @@ void setup() {
 
 void draw() {
 	background(0);
+
+	if (randomColor == true) {
+		colorDie1 = (int)random(50, 255);
+		colorDie2 = (int)random(50, 255);
+		colorDie3 = (int)random(50, 255);
+	}
 
 	for (int x = 10; x < 390; x += 55) {
 		for (int y = 10; y < 390; y += 55) {
@@ -21,15 +42,84 @@ void draw() {
 		}
 	}
 
+	if (total % 2 == 1) {
+		even = false;
+	} else {
+		even = true;
+	}
+
+	if (even == true) {
+		numEven = numEven + 1;
+	} else if (even == false) {
+		numOdd = numOdd + 1;
+	}
+
 	
 	//text for things
 	textAlign(CENTER);
-	text("Total: " + total, 200, 450);
+	textSize(40);
+	fill(255);
+	text("Total: " + total, 200, 430);
+
+	text("Evens: " + numEven, 100, 475);
+	text("Odds: " + numOdd, 300, 475);
+
+	textSize(200);
+	fill(color1, color2, color3, 200);
+	text(total, 200, 275);
+
+
 }
 
 void mousePressed() {
 	redraw();
 	total = 0;
+}
+
+void keyPressed () {
+	if (keyPressed == true && key == 'e') {
+		numEven = 0;
+		numOdd = 0;
+
+		total = 0;
+
+		redraw();
+	}
+
+	if (keyPressed == true && key == 'b') {
+		color1 = 0;
+		color2 = 0;
+		color3 = 255;
+	}
+	if (keyPressed == true && key == 'g') {
+		color1 = 0;
+		color2 = 255;
+		color3 = 0;
+	}
+	if (keyPressed == true && key == 'r') {
+		color1 = 255;
+		color2 = 0;
+		color3 = 0;
+	}
+
+	if (keyPressed == true && key == '1') {
+		colorDie1 = 255;
+		colorDie2 = 255;
+		colorDie3 = 255;
+	}
+	if (keyPressed == true && key == '2') {
+		colorDie1 = 0;
+		colorDie2 = 255;
+		colorDie3 = 200;
+	}
+	if (keyPressed == true && key == '3') {
+		colorDie1 = 255;
+		colorDie2 = 0;
+		colorDie3 = 200;
+	}
+	if (keyPressed == true && key == '4') {
+		randomColor = true;
+	}
 }
 
 
@@ -61,11 +151,30 @@ class Die {
 			point(dieX + 15.5, dieY + 15.5);
 			point(dieX + 25, dieY + 25);
 			point(dieX + 35, dieY + 35);
+		} else if (dieNum == 4) {
+			point(dieX + 17.5, dieY + 17.5);
+			point(dieX + 17.5, dieY + 32);
+			point(dieX + 32, dieY + 32);
+			point(dieX + 32, dieY + 17.5);
+		} else if (dieNum == 5) {
+			point(dieX + 15, dieY + 15);
+			point(dieX + 15, dieY + 35);
+			point(dieX + 35, dieY + 35);
+			point(dieX + 35, dieY + 15);
+			point(dieX + 25, dieY + 25);
+		} else if (dieNum == 6) {
+			point(dieX + 15, dieY + 13);
+			point(dieX + 15, dieY + 37);
+			point(dieX + 15, dieY + 25);
+			point(dieX + 35, dieY + 25);
+			point(dieX + 35, dieY + 37);
+			point(dieX + 35, dieY + 13);
+			
 		}
 	}
 
 	void show() {
-		fill(255);
+		fill(colorDie1, colorDie2, colorDie3);
 		stroke(0);
 		strokeWeight(1);
 		rect(dieX, dieY, 50, 50, 15);
