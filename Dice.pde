@@ -2,6 +2,7 @@ Die a;
 
 int total = 0;
 int average = 0;
+int totalClicks = 0;
 
 int numEven = 0;
 int numOdd = 0;
@@ -9,6 +10,7 @@ int numOdd = 0;
 boolean even;
 
 boolean randomColor = false;
+boolean randomScoreColor = false;
 
 int color1 = 0;
 int color2 = 255;
@@ -20,7 +22,7 @@ int colorDie3 = 255;
 
 void setup() {
 	noLoop();
-	size(400, 500);
+	size(700, 500);
 }
 
 void draw() {
@@ -30,6 +32,12 @@ void draw() {
 		colorDie1 = (int)random(50, 255);
 		colorDie2 = (int)random(50, 255);
 		colorDie3 = (int)random(50, 255);
+	}
+
+	if (randomScoreColor == true) {
+		color1 = (int)random(50, 255);
+		color2 = (int)random(50, 255);
+		color3 = (int)random(50, 255);
 	}
 
 	for (int x = 10; x < 390; x += 55) {
@@ -64,22 +72,41 @@ void draw() {
 	text("Evens: " + numEven, 100, 475);
 	text("Odds: " + numOdd, 300, 475);
 
+
+	textAlign(LEFT);
+	textSize(30);
+	text("Times Clicked: " + totalClicks, 400, 40);
+
+	textAlign(CENTER);
 	textSize(200);
 	fill(color1, color2, color3, 200);
 	text(total, 200, 275);
 
+
+	//instructions
+	textAlign(LEFT);
+	textSize(20);
+	fill(255);
+
+	text(" Instructions: \n Click to roll the dice \n Press e to reset all stats \n To change TOTAL number \n color: \n r - RED \n g - GREEN \n b - BLUE \n t - RANDOM \n To change DICE color \n 1 - WHITE \n 2 - BLUE-GREEN \n 3 - PINK \n 4 - RANDOM ", 395, 70);
 
 }
 
 void mousePressed() {
 	redraw();
 	total = 0;
+
+	if (totalClicks < 1000) {
+		totalClicks = totalClicks + 1;
+	}
 }
 
 void keyPressed () {
 	if (keyPressed == true && key == 'e') {
 		numEven = 0;
 		numOdd = 0;
+
+		totalClicks = 0;
 
 		total = 0;
 
@@ -90,36 +117,46 @@ void keyPressed () {
 		color1 = 0;
 		color2 = 0;
 		color3 = 255;
+		randomScoreColor = false;
 	}
 	if (keyPressed == true && key == 'g') {
 		color1 = 0;
 		color2 = 255;
 		color3 = 0;
+		randomScoreColor = false;
 	}
 	if (keyPressed == true && key == 'r') {
 		color1 = 255;
 		color2 = 0;
 		color3 = 0;
+		randomScoreColor = false;
+	}
+	if (keyPressed == true && key == 't') {
+		randomScoreColor = true;
 	}
 
 	if (keyPressed == true && key == '1') {
 		colorDie1 = 255;
 		colorDie2 = 255;
 		colorDie3 = 255;
+		randomColor = false;
 	}
 	if (keyPressed == true && key == '2') {
 		colorDie1 = 0;
 		colorDie2 = 255;
 		colorDie3 = 200;
+		randomColor = false;
 	}
 	if (keyPressed == true && key == '3') {
 		colorDie1 = 255;
 		colorDie2 = 0;
 		colorDie3 = 200;
+		randomColor = false;
 	}
 	if (keyPressed == true && key == '4') {
 		randomColor = true;
 	}
+
 }
 
 
