@@ -88,7 +88,7 @@ void draw() {
 	textSize(20);
 	fill(255);
 
-	text(" Instructions: \n\n Click to roll the dice \n\n Press e to reset all stats \n\n To change TOTAL number \n color: \n r - RED \n g - GREEN \n b - BLUE \n t - RANDOM \n To change DICE color \n\n 1 - WHITE \n 2 - BLUE-GREEN \n 3 - PINK \n 4 - RANDOM ", 395, 70);
+	text(" Instructions: \n\n Click to roll the dice \n\n Press and hold e to reset all stats \n\n To change TOTAL number \n color: \n r - RED \n g - GREEN \n b - BLUE \n t - RANDOM \n To change DICE color \n\n 1 - WHITE \n 2 - BLUE-GREEN \n 3 - PINK \n 4 - RANDOM ", 395, 70);
 
 }
 
@@ -102,7 +102,7 @@ void mousePressed() {
 }
 
 void keyPressed () {
-	if (keyPressed == true && key == 69) {
+	if (keyPressed == true && key == 'e') {
 		numEven = 0;
 		numOdd = 0;
 
