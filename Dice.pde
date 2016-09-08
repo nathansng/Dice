@@ -102,7 +102,7 @@ void mousePressed() {
 }
 
 void keyPressed () {
-	if (keyPressed == true && key == 'e') {
+	if (keyPressed == true && key == 69) {
 		numEven = 0;
 		numOdd = 0;
 
