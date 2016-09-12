@@ -259,5 +259,5 @@ class Die {
 
 
 void enemy () {
-	enemyNum = (int)(Math.random()*100)+100;
+	enemyNum = (int)(Math.random()*50)+150;
 }
