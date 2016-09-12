@@ -4,6 +4,11 @@ int total = 0;
 int average = 0;
 int totalClicks = 0;
 
+int enemyNum;
+
+int points = 0;
+int enemyPoints = 0;
+
 int numEven = 0;
 int numOdd = 0;
 
@@ -22,11 +27,13 @@ int colorDie3 = 255;
 
 void setup() {
 	noLoop();
-	size(700, 500);
+	size(1200, 500);
 }
 
 void draw() {
 	background(0);
+
+	enemy();
 
 	if (randomColor == true) {
 		colorDie1 = (int)random(50, 255);
@@ -90,6 +97,36 @@ void draw() {
 
 	text(" Instructions: \n\n Click to roll the dice \n\n Press and hold e to reset all stats \n\n To change TOTAL number \n color: \n r - RED \n g - GREEN \n b - BLUE \n t - RANDOM \n To change DICE color \n\n 1 - WHITE \n 2 - BLUE-GREEN \n 3 - PINK \n 4 - RANDOM ", 395, 70);
 
+
+	//enemy comparer
+	textAlign(CENTER);
+	textSize(25);
+	text("Try to get a higher score \nthan your opponent", 950, 50);
+
+	if (total > enemyNum) {
+		textAlign(CENTER);
+		textSize(100);
+		text("YOU WIN", 950, 300);
+		points = points + 1;
+	} else if (total < enemyNum) {
+		textAlign(CENTER);
+		textSize(100);
+		text("YOU LOSE", 950, 300);
+		enemyPoints = enemyPoints + 1;
+	} else if (total == enemyNum) {
+		textAlign(CENTER);
+		textSize(100);
+		text("TIE", 950, 300);
+	}
+
+	textAlign(LEFT);
+	textSize(20);
+	text("Your score: " + total, 800, 125);
+	text("Opponent's score: " + enemyNum, 800, 175);
+
+	text("Your Points: " + points, 800, 350);
+	text("Opponent's Points: " + enemyPoints, 800, 400);
+
 }
 
 void mousePressed() {
@@ -109,6 +146,9 @@ void keyPressed () {
 		totalClicks = 0;
 
 		total = 0;
+
+		points = 0;
+		enemyPoints = 0;
 
 		redraw();
 	}
@@ -173,8 +213,6 @@ class Die {
 	void roll() {
 		dieNum = (int)(Math.random() * 6) + 1;
 
-		//dieNum = 2;
-
 		strokeWeight(10);
 		stroke(0);
 
@@ -217,4 +255,9 @@ class Die {
 		rect(dieX, dieY, 50, 50, 15);
 		roll();
 	}
+}
+
+
+void enemy () {
+	enemyNum = (int)(Math.random()*100)+100;
 }
