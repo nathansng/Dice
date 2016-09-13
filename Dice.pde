@@ -139,7 +139,7 @@ void mousePressed() {
 }
 
 void keyPressed () {
-	if (keyPressed == true && key == 'e') {
+	if (key == 'e') {
 		numEven = 0;
 		numOdd = 0;
 
@@ -153,47 +153,47 @@ void keyPressed () {
 		redraw();
 	}
 
-	if (keyPressed == true && key == 'b') {
+	if (key == 'b') {
 		color1 = 0;
 		color2 = 0;
 		color3 = 255;
 		randomScoreColor = false;
 	}
-	if (keyPressed == true && key == 'g') {
+	if (key == 'g') {
 		color1 = 0;
 		color2 = 255;
 		color3 = 0;
 		randomScoreColor = false;
 	}
-	if (keyPressed == true && key == 'r') {
+	if ( key == 'r') {
 		color1 = 255;
 		color2 = 0;
 		color3 = 0;
 		randomScoreColor = false;
 	}
-	if (keyPressed == true && key == 't') {
+	if ( key == 't') {
 		randomScoreColor = true;
 	}
 
-	if (keyPressed == true && key == '1') {
+	if ( key == '1') {
 		colorDie1 = 255;
 		colorDie2 = 255;
 		colorDie3 = 255;
 		randomColor = false;
 	}
-	if (keyPressed == true && key == '2') {
+	if ( key == '2') {
 		colorDie1 = 0;
 		colorDie2 = 255;
 		colorDie3 = 200;
 		randomColor = false;
 	}
-	if (keyPressed == true && key == '3') {
+	if ( key == '3') {
 		colorDie1 = 255;
 		colorDie2 = 0;
 		colorDie3 = 200;
 		randomColor = false;
 	}
-	if (keyPressed == true && key == '4') {
+	if (key == '4') {
 		randomColor = true;
 	}
 
